@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>muzly — sua trilha sonora</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── SEARCH OVERLAY ── -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Busca global">
+  <div class="search-box">
+    <div class="search-box-inner">
+      <i class="fas fa-search si" aria-hidden="true"></i>
+      <input type="text" id="globalSearch" placeholder="buscar música ou artista..." autocomplete="off">
+    </div>
+    <div class="search-results" id="srResults"></div>
+    <p class="srch-hint">esc para fechar · ctrl+k para abrir</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+═══════════════════════════════════════ -->
+<header id="header">
+  <div class="wrap header-inner">
+    <a href="#home" class="logo"><i class="fas fa-headphones"></i> muzly</a>
+
+    <nav id="navbar" role="navigation">
+      <ul>
+        <li><a href="#home"      class="active">home</a></li>
+        <li><a href="#discover">discover</a></li>
+        <li><a href="#moods">moods</a></li>
+        <li><a href="#fy">for you</a></li>
+        <li><a href="#playlists">playlists</a></li>
+        <li><a href="#artists">artistas</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn-icon" id="searchOpenBtn" aria-label="buscar"><i class="fas fa-search"></i></button>
+      <button id="themeBtn" aria-label="alternar tema"><i class="fas fa-sun" id="themeIcon"></i></button>
+      <button class="btn-icon" aria-label="notificações"><i class="fas fa-bell"></i></button>
+    <div class="avatar">
+       <img src="peu.jpg" alt="peu">
+    </div>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="home">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag"><span class="dot"></span> seu universo musical</div>
+      <h1>muz<em>ly</em></h1>
+      <div class="hero-actions">
+        <a href="#discover" class="btn btn-accent btn-lg"><i class="fas fa-play"></i> explorar agora</a>
+        <a href="#" class="btn btn-outline btn-lg">como funciona</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <h2>a trilha sonora perfeita para cada momento da sua vida</h2>
+      <p class="hero-body">descubra músicas, playlists e recomendações personalizadas. o muzly aprende com os seus gostos e entrega a experiência musical ideal — sempre, para qualquer ocasião.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">80M</span><span class="stat-label">faixas</span></div>
+        <div class="stat"><span class="stat-num">5M</span><span class="stat-label">playlists</span></div>
+        <div class="stat"><span class="stat-num">190</span><span class="stat-label">países</span></div>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><p>scroll</p><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     DISCOVER
+═══════════════════════════════════════ -->
+<section class="section" id="discover">
+  <div class="wrap">
+    <div class="section-eyebrow">discover</div>
+    <div class="discover-layout">
+      <div class="discover-left">
+        <h2>explore<br>o novo</h2>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+            <div><h3>recomendações inteligentes</h3><p>nossa IA analisa seus hábitos e sugere músicas que você vai amar antes mesmo de saber que existem.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-compass"></i></div>
+            <div><h3>explore gêneros</h3><p>de lofi a sertanejo universitário — explore territórios sonoros sem fronteiras e descubra novas paixões.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-fire"></i></div>
+            <div><h3>trending agora</h3><p>o que o Brasil inteiro está ouvindo em tempo real — atualizado a cada hora.</p></div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-users"></i></div>
+            <div><h3>seus amigos ouvem</h3><p>veja as músicas e playlists em alta entre as pessoas que você segue.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="discover-right">
+        <!-- PLAYER FUNCIONAL -->
+        <div class="player-card">
+          <div class="np-label"><span class="np-dot"></span><span id="mpLabel">tocando agora</span></div>
+          <div class="np-track">
+            <div class="np-img"><img src="cdas.jpg" alt="" id="mpThumb" onerror="this.style.opacity=0"></div>
+            <div class="np-info"><h4 id="mpTitle">Combo da Sorte</h4><span id="mpArtist">Marina Sena</span></div>
+          </div>
+          <div class="np-waveform" id="mpWave"></div>
+          <div class="np-prog-wrap" id="mpProgWrap">
+            <div class="np-prog-fill" id="mpProgFill" style="width:0%"></div>
+          </div>
+          <div class="np-times"><span id="mpNow">0:00</span><span id="mpTot">3:47</span></div>
+          <div class="np-controls">
+            <i class="fas fa-shuffle" id="mpShuffle" title="embaralhar"></i>
+            <i class="fas fa-backward-step" id="mpPrev" title="anterior"></i>
+            <div class="np-play" id="mpPlayBtn" role="button" tabindex="0" aria-label="pausar">
+              <i class="fas fa-pause" id="mpPlayIcon"></i>
+            </div>
+            <i class="fas fa-forward-step" id="mpNext" title="próxima"></i>
+            <i class="fas fa-repeat" id="mpRepeat" title="repetir"></i>
+          </div>
+        </div>
+
+        <p style="font-family:var(--fm);font-size:0.7rem;color:var(--muted);margin-bottom:0.8rem;letter-spacing:0.05em;">explore por mood</p>
+        <div class="mood-chips">
+          <span class="chip active">✦ foco</span>
+          <span class="chip">relax</span>
+          <span class="chip">festa</span>
+          <span class="chip">workout</span>
+          <span class="chip">sad hours</span>
+          <span class="chip">road trip</span>
+          <span class="chip">romance</span>
+          <span class="chip">manhã</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MOODS
+═══════════════════════════════════════ -->
+<section class="section" id="moods">
+  <div class="wrap">
+    <div class="section-eyebrow">moods</div>
+    <div class="section-header">
+      <h2 class="section-title">como você está?</h2>
+      <a href="#" class="see-all">ver tudo →</a>
+    </div>
+    <div class="moods-grid">
+      <span class="mood-pill mc">😌 chill</span>
+      <span class="mood-pill mh">⚡ hype</span>
+      <span class="mood-pill mf">🧠 foco</span>
+      <span class="mood-pill ms">🌧 sad hours</span>
+      <span class="mood-pill mhp">☀️ happy</span>
+      <span class="mood-pill mn">🌙 noite</span>
+      <span class="mood-pill mw">🏋️ workout</span>
+      <span class="mood-pill mr">💕 romance</span>
+      <span class="mood-pill mc">✈️ road trip</span>
+      <span class="mood-pill mhp">🌅 manhã</span>
+      <span class="mood-pill mf">📚 estudo</span>
+      <span class="mood-pill ms">🎭 dramático</span>
+    </div>
+    <div class="mood-banner">
+      <div>
+        <h3>deixa a IA escolher por você</h3>
+        <p>descreva como está se sentindo e o muzly monta a playlist perfeita em segundos.</p>
+      </div>
+      <a href="#" class="btn btn-accent"><i class="fas fa-wand-magic-sparkles"></i> gerar playlist</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOR YOU
+═══════════════════════════════════════ -->
+<section class="section" id="fy">
+  <div class="wrap">
+    <div class="section-eyebrow">for you</div>
+    <div class="section-header">
+      <h2 class="section-title">escolhido pra você</h2>
+      <a href="#" class="see-all">ver tudo →</a>
+    </div>
+
+    <div class="track-search-wrap">
+      <i class="fas fa-search si" aria-hidden="true"></i>
+      <input type="text" id="trackSearch" placeholder="filtrar por música ou artista..." autocomplete="off">
+    </div>
+
+    <div class="genre-chips" id="genreChips">
+      <span class="gchip active" data-genre="all">tudo</span>
+      <span class="gchip" data-genre="mpb">mpb</span>
+      <span class="gchip" data-genre="indie">indie</span>
+      <span class="gchip" data-genre="rock">rock</span>
+      <span class="gchip" data-genre="hip-hop">hip-hop</span>
+    </div>
+
+    <div class="tracks-count" id="tracksCount">8 faixas</div>
+    <div class="tracks-grid" id="tracksGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PLAYLISTS
+═══════════════════════════════════════ -->
+<section class="section" id="playlists">
+  <div class="wrap">
+    <div class="section-eyebrow">playlists</div>
+    <div class="section-header">
+      <h2 class="section-title">suas playlists</h2>
+      <a href="#" class="see-all">ver tudo →</a>
+    </div>
+    <div class="playlist-grid">
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('foco.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">foco total 🎯</div><div class="playlist-meta">84 músicas · 4h 12min</div></div>
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('lofi.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">madrugada lofi 🌙</div><div class="playlist-meta">112 músicas · 6h 03min</div></div>
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('mpb.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">mpb essencial 💜</div><div class="playlist-meta">200 músicas · 12h 45min</div></div>
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('gym.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">treino pesado 🔥</div><div class="playlist-meta">65 músicas · 3h 28min</div></div>
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('jazz.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">jazz 🌊</div><div class="playlist-meta">90 músicas · 5h 20min</div></div>
+      <div class="playlist-card"><div class="playlist-cover" style="background-image:url('day-by-day.jpg')"><div class="pl-overlay"><div class="pl-play-btn"><i class="fas fa-play"></i></div></div></div><div class="playlist-name">day by day ✨</div><div class="playlist-meta">130 músicas · 7h 56min</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ARTISTS
+═══════════════════════════════════════ -->
+<section class="section" id="artists">
+  <div class="wrap">
+    <div class="section-eyebrow">artistas</div>
+    <div class="section-header">
+      <h2 class="section-title">mais ouvidos</h2>
+      <a href="#" class="see-all">ver tudo →</a>
+    </div>
+    <div class="artists-grid">
+      <div class="artist-card"><div class="artist-avatar"><img src="asap.jpg" alt="A$AP Rocky"></div><div class="artist-name">A$AP Rocky</div><div class="artist-genre">rap</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="clairo.jpg" alt="Clairo"></div><div class="artist-name">Clairo</div><div class="artist-genre">indie pop</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="trst.jpg" alt="The Rolling Stones"></div><div class="artist-name">The Rolling Stones</div><div class="artist-genre">rock</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="tim.jpg" alt="Tim Bernardes"></div><div class="artist-name">Tim Bernardes</div><div class="artist-genre">mpb</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="radiohead.jpg" alt="Radiohead"></div><div class="artist-name">Radiohead</div><div class="artist-genre">alternative rock</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="mt.jpg" alt="Malcom Todd"></div><div class="artist-name">Malcom Todd</div><div class="artist-genre">indie pop</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="lilpep.jpg" alt="Lil Peep"></div><div class="artist-name">Lil Peep</div><div class="artist-genre">hip hop</div></div>
+      <div class="artist-card"><div class="artist-avatar"><img src="cb.jpg" alt="Chet Baker"></div><div class="artist-name">Chet Baker</div><div class="artist-genre">jazz</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     NOW PLAYING BAR
+═══════════════════════════════════════ -->
+<div class="now-playing-bar" role="region" aria-label="tocando agora">
+  <div class="npb-thumb"><img src="cdas.jpg" alt="" id="npbThumb" onerror="this.style.opacity=0"></div>
+  <div class="npb-info">
+    <div class="npb-name" id="npbName">Combo da Sorte</div>
+    <div class="npb-artist" id="npbArtist">Marina Sena</div>
+    <div class="npb-prog"><div class="npb-prog-fill" id="npbFill" style="width:0%"></div></div>
+  </div>
+  <div class="npb-controls">
+    <i class="fas fa-backward-step" id="npbPrev" title="anterior"></i>
+    <button class="npb-play" id="npbPlay" aria-label="pausar"><i class="fas fa-pause" id="npbIcon"></i></button>
+    <i class="fas fa-forward-step" id="npbNext" title="próxima"></i>
+    <i class="fas fa-heart" id="npbHeart" title="curtir"></i>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo"><i class="fas fa-headphones"></i> muzly</a>
+        <p>a trilha sonora perfeita para cada momento da sua vida. descubra, ouça e compartilhe músicas com o seu universo.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>produto</h4>
+        <ul><li><a href="#">discover</a></li><li><a href="#">playlists</a></li><li><a href="#">artistas</a></li><li><a href="#">rádio</a></li><li><a href="#">ao vivo</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>empresa</h4>
+        <ul><li><a href="#">sobre nós</a></li><li><a href="#">blog</a></li><li><a href="#">carreiras</a></li><li><a href="#">imprensa</a></li><li><a href="#">contato</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>suporte</h4>
+        <ul><li><a href="#">central de ajuda</a></li><li><a href="#">termos de uso</a></li><li><a href="#">privacidade</a></li><li><a href="#">cookies</a></li><li><a href="#">acessibilidade</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 muzly. todos os direitos reservados.</p>
+      <span class="footer-badge">gratuito para sempre</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+/* ── DATA ── */
+const TRACKS = [
+  { id:1, name:'Combo da Sorte',              artist:'Marina Sena',   dur:'3:47', secs:227, genre:'mpb',     img:'cdas.jpg',      emoji:'🎵' },
+  { id:2, name:'BB (Garupa de Moto Amarela)', artist:'Tim Bernardes', dur:'4:22', secs:262, genre:'mpb',     img:'bb.jpg',        emoji:'🎶' },
+  { id:3, name:'Glue Song (feat. Clairo)',    artist:'beabadoobee',   dur:'3:12', secs:192, genre:'indie',   img:'glue.jpg',      emoji:'🌸' },
+  { id:4, name:'Ignorance',                  artist:'Paramore',      dur:'3:58', secs:238, genre:'rock',    img:'ignorance.jpg', emoji:'⚡' },
+  { id:5, name:'Preciso Dizer Que Te Amo',   artist:'Cazuza',        dur:'4:42', secs:282, genre:'rock',    img:'pdqtamo.jpg',   emoji:'🎸' },
+  { id:6, name:'butterflies.',               artist:'Brent Fayaz',   dur:'3:05', secs:185, genre:'hip-hop', img:'bt.jpg',        emoji:'🦋' },
+  { id:7, name:'O BAIANO TEM O MOLHO',       artist:'O Kannalha',    dur:'2:10', secs:130, genre:'mpb',     img:'obaiano.png',   emoji:'🔥' },
+  { id:8, name:'Lovers Rock',                artist:'TV Girl',       dur:'3:34', secs:214, genre:'indie',   img:'lr.png',        emoji:'💕' },
+];
+
+/* ── STATE ── */
+let cur = 0, playing = true, elapsed = 0;
+let doShuffle = false, doRepeat = false;
+let liked = new Set();
+let filterGenre = 'all', filterQ = '';
+let ticker;
+
+/* ── HELPERS ── */
+const fmt = s => { const m = Math.floor(s/60), sec = s%60; return m+':'+(sec<10?'0':'')+sec; };
+const pct = () => Math.min((elapsed / TRACKS[cur].secs) * 100, 100);
+const $ = id => document.getElementById(id);
+
+/* ── WAVEFORM ── */
+const HEIGHTS = [28,48,70,42,88,58,36,75,52,92,64,32,80,48,68,44,82,56,38,72,50,86,62,30,78,46,26,68,84,58];
+function buildWave() {
+  const wv = $('mpWave'); wv.innerHTML = '';
+  HEIGHTS.forEach(h => { const b = document.createElement('div'); b.className='wb'; b.style.height=h+'%'; wv.appendChild(b); });
+}
+function updateWave() {
+  const bars = document.querySelectorAll('#mpWave .wb');
+  const filled = Math.floor((elapsed / TRACKS[cur].secs) * bars.length);
+  bars.forEach((b,i) => b.className = 'wb'+(i<filled?' filled':i===filled&&playing?' active':''));
+}
+
+/* ── SYNC ALL UI ── */
+function sync() {
+  const t = TRACKS[cur];
+  /* mini player */
+  $('mpThumb').src = t.img;
+  $('mpTitle').textContent = t.name;
+  $('mpArtist').textContent = t.artist;
+  $('mpTot').textContent = t.dur;
+  $('mpNow').textContent = fmt(elapsed);
+  $('mpProgFill').style.width = pct()+'%';
+  $('mpLabel').textContent = playing ? 'tocando agora' : 'pausado';
+  $('mpPlayIcon').className = playing ? 'fas fa-pause' : 'fas fa-play';
+  $('mpPlayBtn').setAttribute('aria-label', playing ? 'pausar' : 'tocar');
+  $('mpShuffle').classList.toggle('ctrl-active', doShuffle);
+  $('mpRepeat').classList.toggle('ctrl-active', doRepeat);
+  /* now playing bar */
+  $('npbThumb').src = t.img;
+  $('npbName').textContent = t.name;
+  $('npbArtist').textContent = t.artist;
+  $('npbFill').style.width = pct()+'%';
+  $('npbIcon').className = playing ? 'fas fa-pause' : 'fas fa-play';
+  $('npbPlay').setAttribute('aria-label', playing ? 'pausar' : 'tocar');
+  $('npbHeart').className = liked.has(t.id) ? 'fas fa-heart liked' : 'fas fa-heart';
+  updateWave();
+  renderTracks();
+}
+
+/* ── PLAYBACK ── */
+function startTicker() {
+  clearInterval(ticker);
+  if (!playing) return;
+  ticker = setInterval(() => {
+    elapsed++;
+    if (elapsed >= TRACKS[cur].secs) {
+      if (doRepeat) { elapsed = 0; }
+      else { nextTrack(); return; }
+    }
+    sync();
+  }, 1000);
+}
+function togglePlay() { playing = !playing; startTicker(); sync(); }
+function nextTrack() {
+  cur = doShuffle ? Math.floor(Math.random()*TRACKS.length) : (cur+1)%TRACKS.length;
+  elapsed = 0; playing = true; startTicker(); sync();
+}
+function prevTrack() {
+  if (elapsed > 4) { elapsed = 0; startTicker(); sync(); return; }
+  cur = (cur-1+TRACKS.length)%TRACKS.length;
+  elapsed = 0; playing = true; startTicker(); sync();
+}
+function jumpTo(idx) {
+  if (idx === cur) { togglePlay(); return; }
+  cur = idx; elapsed = 0; playing = true; startTicker(); sync();
+}
+
+/* progress seek */
+$('mpProgWrap').addEventListener('click', function(e) {
+  const r = this.getBoundingClientRect();
+  elapsed = Math.floor(((e.clientX-r.left)/r.width)*TRACKS[cur].secs);
+  sync();
+});
+
+/* controls */
+$('mpPlayBtn').addEventListener('click', togglePlay);
+$('mpPlayBtn').addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter') togglePlay(); });
+$('mpNext').addEventListener('click', nextTrack);
+$('mpPrev').addEventListener('click', prevTrack);
+$('mpShuffle').addEventListener('click', () => { doShuffle=!doShuffle; sync(); });
+$('mpRepeat').addEventListener('click', () => { doRepeat=!doRepeat; sync(); });
+$('npbPlay').addEventListener('click', togglePlay);
+$('npbNext').addEventListener('click', nextTrack);
+$('npbPrev').addEventListener('click', prevTrack);
+$('npbHeart').addEventListener('click', () => {
+  const id = TRACKS[cur].id;
+  liked.has(id) ? liked.delete(id) : liked.add(id);
+  sync();
+});
+
+/* ── TRACK LIST ── */
+function filtered() {
+  return TRACKS.filter(t => {
+    const gOk = filterGenre==='all' || t.genre===filterGenre;
+    const q = filterQ.toLowerCase();
+    const qOk = !q || t.name.toLowerCase().includes(q) || t.artist.toLowerCase().includes(q);
+    return gOk && qOk;
+  });
+}
+function renderTracks() {
+  const grid = $('tracksGrid');
+  const ft = filtered();
+  $('tracksCount').textContent = ft.length+' faixa'+(ft.length!==1?'s':'');
+  if (!ft.length) { grid.innerHTML='<div class="no-tracks">nenhuma faixa encontrada</div>'; return; }
+  grid.innerHTML = ft.map((t,i) => {
+    const isPlay = TRACKS[cur].id===t.id;
+    const isLike = liked.has(t.id);
+    const idx    = TRACKS.indexOf(t);
+    return `<div class="track-row${isPlay?' is-playing':''}" data-idx="${idx}">
+      <span class="track-num">${String(i+1).padStart(2,'0')}</span>
+      <div class="track-cover">
+        <img src="${t.img}" alt="${t.name}" onerror="this.style.opacity=0">
+        <div class="tc-hover"><i class="fas ${isPlay&&playing?'fa-pause':'fa-play'}"></i></div>
+      </div>
+      <div class="track-info">
+        <div class="track-name">${t.name}</div>
+        <div class="track-artist">${t.artist}</div>
+      </div>
+      <span class="track-duration">${t.dur}</span>
+      <button class="track-heart${isLike?' liked':''}" data-like="${t.id}" aria-label="curtir">
+        <i class="${isLike?'fas':'far'} fa-heart"></i>
+      </button>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.track-row').forEach(row => {
+    row.addEventListener('click', e => { if(e.target.closest('.track-heart')) return; jumpTo(parseInt(row.dataset.idx)); });
+  });
+  grid.querySelectorAll('.track-heart').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const id = parseInt(btn.dataset.like);
+      liked.has(id) ? liked.delete(id) : liked.add(id);
+      sync();
+    });
+  });
+}
+
+/* genre chips */
+$('genreChips').addEventListener('click', e => {
+  const c = e.target.closest('.gchip'); if(!c) return;
+  document.querySelectorAll('.gchip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active');
+  filterGenre = c.dataset.genre;
+  renderTracks();
+});
+
+/* inline search */
+$('trackSearch').addEventListener('input', function(){ filterQ=this.value; renderTracks(); });
+
+/* ── GLOBAL SEARCH OVERLAY ── */
+const overlay = $('searchOverlay');
+const gSearch = $('globalSearch');
+const srRes   = $('srResults');
+
+function openSearch()  { overlay.classList.add('open'); gSearch.focus(); }
+function closeSearch() { overlay.classList.remove('open'); gSearch.value=''; srRes.innerHTML=''; }
+
+$('searchOpenBtn').addEventListener('click', openSearch);
+overlay.addEventListener('click', e => { if(e.target===overlay) closeSearch(); });
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') closeSearch();
+  if ((e.ctrlKey||e.metaKey)&&e.key==='k') { e.preventDefault(); openSearch(); }
+});
+
+gSearch.addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if (!q) { srRes.innerHTML=''; return; }
+  const hits = TRACKS.filter(t => t.name.toLowerCase().includes(q)||t.artist.toLowerCase().includes(q));
+  if (!hits.length) { srRes.innerHTML='<div class="sr-empty">nenhum resultado encontrado</div>'; return; }
+  srRes.innerHTML = hits.map(t => `
+    <div class="sr-item" data-idx="${TRACKS.indexOf(t)}">
+      <div class="sr-thumb"><img src="${t.img}" alt="" onerror="this.textContent='${t.emoji}';this.style.cssText='font-size:1.1rem;display:flex;align-items:center;justify-content:center;width:100%;height:100%'"></div>
+      <div><div class="sr-name">${t.name}</div><div class="sr-sub">${t.artist} · ${t.dur}</div></div>
+    </div>`).join('');
+  srRes.querySelectorAll('.sr-item').forEach(item => {
+    item.addEventListener('click', () => {
+      jumpTo(parseInt(item.dataset.idx));
+      closeSearch();
+      $('fy').scrollIntoView({behavior:'smooth'});
+    });
+  });
+});
+
+/* ── THEME TOGGLE ── */
+let lightMode = false;
+$('themeBtn').addEventListener('click', () => {
+  lightMode = !lightMode;
+  document.documentElement.setAttribute('data-theme', lightMode ? 'light' : 'dark');
+  $('themeIcon').className = lightMode ? 'fas fa-moon' : 'fas fa-sun';
+  $('themeBtn').setAttribute('aria-label', lightMode ? 'modo escuro' : 'modo claro');
+});
+
+/* ── HAMBURGER ── */
+const ham = $('hamburger');
+const nav = $('navbar');
+ham.addEventListener('click', () => {
+  const open = ham.classList.toggle('open');
+  nav.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', open);
+});
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open'); nav.classList.remove('open'); ham.setAttribute('aria-expanded','false');
+}));
+
+/* ── ACTIVE NAV ── */
+const navLinks = document.querySelectorAll('#navbar a');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(l => l.classList.remove('active'));
+    const l = document.querySelector(`#navbar a[href="#${e.target.id}"]`);
+    if (l) l.classList.add('active');
+  });
+}, { threshold: 0.3 }).observe.apply(null, []);
+document.querySelectorAll('section[id]').forEach(s => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach(l => l.classList.remove('active'));
+      const l = document.querySelector(`#navbar a[href="#${e.target.id}"]`);
+      if (l) l.classList.add('active');
+    });
+  }, { threshold: 0.3 }).observe(s);
+});
+
+/* ── MOOD CHIPS ── */
+document.querySelectorAll('.chip').forEach(c => {
+  c.addEventListener('click', () => { document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); });
+});
+document.querySelectorAll('.mood-pill').forEach(p => {
+  p.addEventListener('click', () => p.style.opacity = p.style.opacity==='0.4' ? '' : '0.4');
+});
+
+/* ── INIT ── */
+buildWave();
+startTicker();
+sync();
+</script>
+</body>
+</html>
